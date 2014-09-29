@@ -2,14 +2,27 @@
 <html>
 <head>
     <title>Hipchat History</title>
+
+    <style>
+    table {
+        border: 1px solid gray;
+
+    }
+    </style>
+
 </head>
 <body>
 
-<ul>
+<table>
     {% for message in messages %}
-        <li>
-            {{ message }}
-        </li>
+        <tr>
+            <td>
+                {{ message["from"]["name"] }}
+            </td>
+            <td>
+                {{ message["message"] }}
+            </td>
+        </tr>
     {% endfor %}
 </ul>
 
