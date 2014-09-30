@@ -2,7 +2,7 @@ PYTHON=python
 PYTHONFLAGS=
 
 run:
-    $(PYTHON) $(PYTHONFLAGS) run.py
+	$(PYTHON) $(PYTHONFLAGS) run.py
 
 deploy:
-    git push heroku master
+	git push heroku master

@@ -2,30 +2,57 @@
 <html>
 <head>
     <title>Hipchat History</title>
-
+    <!-- Perhaps you can tell I'm not a designer? -->
     <style>
-    table {
-        border: 1px solid gray;
+        body {
+            font-family: "Helvetica Neue", sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
 
-    }
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            border-top: 1px solid gray;
+        }
+
+        tr:nth-child(even) {
+            background: #eee;
+        }
     </style>
-
 </head>
 <body>
+    <h1><a href="/">Chat History</a></h1>
+    <h2>
+        <a href="/{{ prev.strftime("%Y-%m-%d") }}/">&lt;</a>
+        <a href="/{{ next.strftime("%Y-%m-%d") }}/">&gt;</a>
+        {{ date.strftime("%B %-d, %Y") }}</h2>
 
-<table>
-    {% for message in messages %}
-        <tr>
-            <td>
-                {{ message["from"]["name"] }}
-            </td>
-            <td>
-                {{ message["message"] }}
-            </td>
-        </tr>
-    {% endfor %}
-</ul>
+    {% if messages %}
+        <table>
+            {% for message in messages %}
+                <tr>
+                    <td>
+                        {{ message["from"]["name"] }}
+                    </td>
+                    <td>
+                        {{ message["message"] }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h2>No messages :(</h2>
+    {% endif %}
 
-
+    <p>
+        <a href="https://github.com/johnboxall/blipchat">
+            Contribute on GitHub</a>
+    </p>
 </body>
 </html>

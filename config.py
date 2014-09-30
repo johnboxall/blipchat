@@ -11,9 +11,8 @@ class Config(object):
     BASIC_AUTH_USERNAME = None
     BASIC_AUTH_PASSWORD = None
 
-    HIPCHAT_AUTH_TOKEN = os.environ.get("HIPCHAT_AUTH_TOKEN", None)
-    HIPCHAT_ROOM_ID = os.environ.get("HIPCHAT_ROOM_ID", None)
-
+    HIPCHAT_AUTH_TOKEN = os.environ["HIPCHAT_AUTH_TOKEN"]
+    HIPCHAT_ROOM_ID = os.environ["HIPCHAT_ROOM_ID"]
 
 class DevelopmentConfig(Config):
     DEBUG = True
