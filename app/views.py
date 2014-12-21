@@ -1,6 +1,8 @@
 import time
 import datetime
 
+import pytz
+
 from flask import Blueprint, render_template, current_app
 
 from . import hipchat
@@ -20,20 +22,22 @@ def not_found(error):
 @blueprint.route("/")
 @blueprint.route("/<int:year>-<int:month>-<int:day>/")
 def history(year=None, month=None, day=None):
+    tz = pytz.timezone("Canada/Pacific")
+
     if year is None:
-        date = datetime.date.today()
-    if year is not None:
+        dt = datetime.datetime.now(tz)
+    else:
         try:
-            date = datetime.date(year=year, month=month, day=day)
+            dt = datetime.datetime(year=year, month=month, day=day, tzinfo=tz)
         except ValueError:
             raise
 
     client = hipchat.get_client()
     messages = client.history(room_id=current_app.config["HIPCHAT_ROOM_ID"],
-                             date=date)
+                              dt=dt)
 
     return render_template("index.html",
                            messages=messages,
-                           date=date,
-                           prev=date - datetime.timedelta(days=1),
-                           next=date + datetime.timedelta(days=1))
+                           dt=dt,
+                           prev=dt - datetime.timedelta(days=1),
+                           next=dt + datetime.timedelta(days=1))

@@ -31,7 +31,7 @@
     <h2>
         <a href="/{{ prev.strftime("%Y-%m-%d") }}/">&lt;</a>
         <a href="/{{ next.strftime("%Y-%m-%d") }}/">&gt;</a>
-        {{ date.strftime("%B %-d, %Y") }}</h2>
+        {{ dt.strftime("%B %-d, %Y") }}</h2>
 
     {% if messages %}
         <table>

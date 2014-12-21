@@ -6,9 +6,11 @@ Export Hipchat history.
 
 '''
 import datetime
+import httplib
 import os
 import urllib
 
+import pytz
 import requests
 
 
@@ -30,18 +32,17 @@ class Hipchat(object):
         data = response.json()
         return data
 
-    def history(self, room_id, date=None):
+    def history(self, room_id, dt=None):
         '''
         https://www.hipchat.com/docs/api/method/rooms/history
 
         '''
-        date = date or datetime.datetime.now()
-        date_str = date.strftime("%Y-%m-%d")
+        dt = dt or datetime.datetime.now(pytz.utc)
 
         query = {
             "room_id": room_id,
-            "date": date_str,
-            "timezone": "PST",
+            "date": dt.strftime("%Y-%m-%d"),
+            "timezone": dt.tzinfo.zone,
             "format": "json",
             "auth_token": self.auth_token
         }
@@ -49,7 +50,17 @@ class Hipchat(object):
         path = "rooms/history?{0}".format(urllib.urlencode(query))
         print path
 
-        data = self.request(path)
+        try:
+            data = self.request(path)
+        except (requests.exceptions.HTTPError) as ex:
+            if ex.response.status_code != httplib.BAD_REQUEST:
+                raise
+
+            expected_msg = "This day has not yet come to pass."
+            msg = ex.response.json()["error"]["message"]
+            if msg == expected_msg:
+                return []
+
         messages = data["messages"]
         return messages
 
