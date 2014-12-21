@@ -2,15 +2,20 @@ import os
 
 
 class Config(object):
+    # Flask Debug setting.
     DEBUG = False
+    # Flag for running unit tests.
     TESTING = False
 
+    # Used by `flask_sslify` to redirect HTTP traffic to HTTPS.
     SSL_ONLY = False
 
+    # Used by `flask.ext.basicauth` to add HTTP Authentication.
     BASIC_AUTH_FORCE = False
     BASIC_AUTH_USERNAME = None
     BASIC_AUTH_PASSWORD = None
 
+    # Hipchat settings.
     HIPCHAT_AUTH_TOKEN = os.environ["HIPCHAT_AUTH_TOKEN"]
     HIPCHAT_ROOM_ID = os.environ["HIPCHAT_ROOM_ID"]
 
