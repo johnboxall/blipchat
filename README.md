@@ -4,11 +4,15 @@ A service for exposing Hipchat room convos to folks who aren't users.
 
 ## Installation and Usage
 
+To develop locally:
+
     git clone ...
     virtualenv venv
     source venv/bin/activate
     pip install -r requirements.txt
     make run
+
+Or just [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/johnboxall/blipchat)
 
 ## Config
 
@@ -29,5 +33,4 @@ In development, set in a `.env` at the root for much happiness.
 - [ ] Add styling / html stuff
 - [ ] Allow selecting which room you want
 - [ ] Secret header based auth.
-- [ ] App.json / deploy to Heroku button
 - [ ] Allow timezone configuration

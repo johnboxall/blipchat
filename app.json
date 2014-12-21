@@ -1,0 +1,22 @@
+{
+  "name": "Blipchat",
+  "description": "Expose Hipchat conversation history to non-Hipchat users.",
+  "repository": "https://github.com/johnboxall/blipchat",
+  "keywords": [
+    "hipchat"
+  ],
+  "env": {
+    "HIPCHAT_AUTH_TOKEN": {
+        "description": "Required to access the Hipchat History API."
+    },
+    "HIPCHAT_ROOM_ID": {
+        "description": "The Hipchat Room ID of the room that should be displayed."
+    },
+    "BASIC_AUTH_USERNAME": {
+        "description": "The HTTP Basic Auth username required for authentication."
+    },
+    "BASIC_AUTH_PASSWORD": {
+        "description": "The HTTP Basic Auth password required for authentication."
+    }
+  }
+}
