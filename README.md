@@ -2,17 +2,18 @@
 
 A service for exposing Hipchat room convos to folks who aren't users.
 
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/johnboxall/blipchat)
+
 ## Installation and Usage
 
-To develop locally:
+Blipchat is simple Flask application. To develop locally:
 
-    git clone ...
+    git clone git@github.com:johnboxall/blipchat.git
     virtualenv venv
     source venv/bin/activate
     pip install -r requirements.txt
+    # Configure the settings below in your local `.env` file and..!
     make run
-
-Or just [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/johnboxall/blipchat)
 
 ## Config
 
